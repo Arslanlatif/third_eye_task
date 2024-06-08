@@ -1,7 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neopop/neopop.dart';
@@ -237,9 +235,9 @@ class _LogincreenState extends State<Logincreen>
                                           isSocial: '1'));
                                   if (response['success']) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
+                                        const SnackBar(
                                             content:
-                                                Text(response['message'])));
+                                                Text('Login Successfuly')));
 
                                     _emailTEC.clear();
                                     _passwordTEC.clear();

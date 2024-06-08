@@ -30,11 +30,9 @@ class ApiProvider {
         var responseDecoded = jsonDecode(response.body);
 
         var message = responseDecoded['message'];
-        int userId = responseDecoded['user_data']['user_id'];
-        var token = responseDecoded['user_data']['user_token'];
+        int userId = responseDecoded['user_id'];
         log('userId: $userId');
         log('message: $message');
-        log('token: $token');
 
         return {'success': true, 'message': message};
       } else if (response.statusCode == 409) {
@@ -45,7 +43,7 @@ class ApiProvider {
         return {'success': false, 'message': 'Signup failed'};
       }
     } catch (e) {
-      log("error ${e.toString()}");
+      return e;
     }
   }
 
@@ -64,6 +62,10 @@ class ApiProvider {
       if (response.statusCode == 200) {
         var responseDecoded = jsonDecode(response.body);
 
+        // var message = responseDecoded['message'];
+        // int userId = responseDecoded['user_id'];
+        // var userEmail = responseDecoded['user_email'];
+        
         var message = responseDecoded['message'];
         int userId = responseDecoded['user_data']['user_id'];
         var userEmail = responseDecoded['user_data']['user_email'];
@@ -86,7 +88,7 @@ class ApiProvider {
         return {'success': false, 'message': 'Signup failed'};
       }
     } catch (e) {
-      log('error: ${e.toString}');
+      return e;
     }
   }
 
@@ -115,7 +117,7 @@ class ApiProvider {
         return {'success': false, 'message': 'Failed'};
       }
     } catch (e) {
-      log('error: ${e.toString}');
+      return e;
     }
   }
 
@@ -149,7 +151,7 @@ class ApiProvider {
         return {'success': false, 'message': 'Signup failed'};
       }
     } catch (e) {
-      log('error: ${e.toString}');
+      return e;
     }
   }
 
@@ -173,7 +175,7 @@ class ApiProvider {
         throw Exception('Failed to update password: $message');
       }
     } catch (e) {
-      log('error: ${e.toString}');
+      return e;
     }
   }
 }
